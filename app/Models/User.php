@@ -59,4 +59,26 @@ class User extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function generateTwoFactorCode(): void
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = $this->generate4DigitsCode();
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+    }
+
+    public function resetTwoFactorCode(): void
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
+    }
+
+    private function generate4DigitsCode(): int
+    {
+        return rand(1000, 9999);
+    }
+
 }
