@@ -32,21 +32,23 @@
             <x-input-error :messages="$errors->get('phone_number')" class="mt-2"/>
         </div>
 
-        <!-- Profile Photo -->
-        <div class="mt-4">
-            <x-input-label for="profile_photo" :value="__('Profile Photo')"/>
-            <x-text-input id="profile_photo" class="block mt-1 w-full" type="file" name="profile_photo" :value="old('profile_photo')"/>
-            <x-input-error :messages="$errors->get('profile_photo')" class="mt-2"/>
-        </div>
+        <div class="flex items-center mt-4 gap-3">
+            <!-- Profile Photo -->
+            <div class="form-control w-2/3">
+                <x-input-label for="profile_photo" :value="__('Profile Photo')"/>
+                <input id="profile_photo" class="block mt-1 file-input input-info text-white file-input-bordered w-full" type="file" name="profile_photo"/>
+                <x-input-error :messages="$errors->get('profile_photo')" class="mt-2"/>
+            </div>
 
-        <!-- Role (optional) -->
-        <div class="mt-4">
-            <x-input-label for="role" :value="__('Role')"/>
-            <select id="role" name="role" class="block mt-1 w-full">
-                <option value="student">Student</option>
-                <option value="service-provider">Service Provider</option>
-            </select>
-            <x-input-error :messages="$errors->get('role')" class="mt-2"/>
+            <!-- Role (optional) -->
+            <div class="form-control w-1/3">
+                <x-input-label for="role" :value="__('Role')"/>
+                <select id="role" name="role" class="mt-1 select-accent text-white select select-bordered w-full">
+                    <option value="student">Student</option>
+                    <option value="service-provider">Service Provider</option>
+                </select>
+                <x-input-error :messages="$errors->get('role')" class="mt-2"/>
+            </div>
         </div>
 
         <!-- Password -->
