@@ -11,6 +11,7 @@ class ScamAlert extends Model
     use HasFactory;
 
     protected $fillable = [
+        'service_provider',
         'description',
         'date_reported',
         'location_area',
@@ -21,4 +22,10 @@ class ScamAlert extends Model
     {
         return $this->belongsTo(User::class, 'reported_by');
     }
+
+    public function service_provider(): BelongsTo
+    {
+        return $this->belongsTo(ServiceProvider::class, 'service_provider');
+    }
+
 }

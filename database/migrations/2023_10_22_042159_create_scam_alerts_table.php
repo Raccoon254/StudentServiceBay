@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('scam_alerts', function (Blueprint $table) {
             $table->id();
-            $table->string('service_provider');
+            $table->foreignId('service_provider')->constrained('service_providers');
             $table->text('description');
             $table->date('date_reported')->useCurrent();
             $table->string('location_area');
-            $table->foreignId('reported_by')->constrained('users', 'id');
+            $table->foreignId('reported_by')->constrained('users');
             $table->timestamps();
         });
 
