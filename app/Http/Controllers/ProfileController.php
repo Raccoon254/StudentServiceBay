@@ -21,6 +21,13 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function dash(Request $request): View
+    {
+        return view('dashboard', [
+            'user' => $request->user(),
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */
