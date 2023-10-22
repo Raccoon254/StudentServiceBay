@@ -17,7 +17,7 @@
 <body class="antialiased bg-cover bg-center" style="background-image: url('/bg.svg');">
 <section class="main flex min-h-screen items-center justify-center flex-col">
     <div class="text-3xl">
-        Welcome message
+        Welcome to {{ env('APP_NAME')}}
     </div>
     <div class="sm:flex sm:items-center dark:bg-dots-lighter selection:bg-red-500 selection:text-white">
         <!-- Check for login route -->

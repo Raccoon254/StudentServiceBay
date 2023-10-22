@@ -24,10 +24,13 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone_number' => ['required', 'string', 'max:10', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'role' => ['required', 'in:student,service-provider'],
         ]);
 
         $phone_number_validated = $this->validateNumber($request->phone_number);
@@ -35,12 +38,23 @@ class RegisteredUserController extends Controller
             return redirect()->back()->with('error', 'Invalid phone number');
         }
 
-        $user = User::create([
-            'name' => $request->name,
+        $user = new User([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $phone_number_validated,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'verification_status' => 'unverified',
         ]);
+
+        if ($request->hasFile('profile_photo')) {
+            $imageName = time() . '.' . $request->profile_photo->extension();
+            $request->profile_photo->storeAs('profile_photos', $imageName, 'public');
+            $user->profile_photo = $imageName;
+        }
+
+        $user->save();
 
         event(new Registered($user));
 
@@ -48,6 +62,7 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
 
     private function validateNumber(mixed $phone_number): int|bool
     {
