@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('service_listings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_provider_id')->constrained();
+            $table->text('service_description');
+            $table->decimal('service_price', 8, 2);
             $table->timestamps();
         });
     }
