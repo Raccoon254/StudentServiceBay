@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('welcome'); });
 Route::get('/two-factor', [ProfileController::class, 'twoFactorForm'])->name('two-factor.form');
+Route::post('/two-factor', [ProfileController::class, 'twoFactorVerify'])->name('two-factor.verify');
 
 Route::middleware(['auth', 'verified', 'two_factor_auth'])->group(function () {
     Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');

@@ -76,6 +76,14 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function setTwoFactorAuthenticated(): void
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = 1; // indicates 2FA authenticated
+        $this->two_factor_expires_at = null;
+        $this->save();
+    }
+
     private function generate4DigitsCode(): int
     {
         return rand(1000, 9999);

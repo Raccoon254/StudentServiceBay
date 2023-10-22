@@ -33,6 +33,30 @@ class ProfileController extends Controller
         return view('auth.two-factor');
     }
 
+    public function twoFactorVerify(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'two_factor_code' => ['required', 'numeric'],
+        ]);
+
+        $user = $request->user();
+
+        if ($request->input('two_factor_code') !== $user->two_factor_code ||
+            now()->gt($user->two_factor_expires_at)) {
+
+            // Reset the 2FA code
+            $user->resetTwoFactorCode();
+
+            return Redirect::back()->withErrors(['two_factor' => 'The provided code is invalid.']);
+        }
+
+        // Set the user as 2FA authenticated
+        $user->setTwoFactorAuthenticated();
+
+        return Redirect::intended();
+    }
+
+
     /**
      * Update the user's profile information.
      */
