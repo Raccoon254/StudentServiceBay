@@ -28,6 +28,11 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function twoFactorForm(Request $request): View
+    {
+        return view('auth.two-factor');
+    }
+
     /**
      * Update the user's profile information.
      */

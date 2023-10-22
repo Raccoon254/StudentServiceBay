@@ -14,14 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
+Route::get('/two-factor', [ProfileController::class, 'twoFactorForm'])->name('two-factor.form');
 
-Route::middleware(['auth', 'two_factor_auth'])->group(function () {
-
-Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');
-
+Route::middleware(['auth', 'verified', 'two_factor_auth'])->group(function () {
+    Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
