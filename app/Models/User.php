@@ -60,12 +60,13 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
-    public function generateTwoFactorCode(): void
+    public function generateTwoFactorCode(): ?int
     {
         $this->timestamps = false;
         $this->two_factor_code = $this->generate4DigitsCode();
         $this->two_factor_expires_at = now()->addMinutes(10);
         $this->save();
+        return $this->two_factor_code;
     }
 
     public function resetTwoFactorCode(): void
