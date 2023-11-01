@@ -23,9 +23,10 @@ class ScamAlert extends Model
         return $this->belongsTo(User::class, 'reported_by');
     }
 
-    public function service_provider(): BelongsTo
+    public function serviceProvider(): BelongsTo
     {
-        return $this->belongsTo(ServiceProvider::class, 'service_provider');
+        return $this->belongsTo(ServiceProvider::class, 'service_provider', 'id');
     }
+
 
 }
