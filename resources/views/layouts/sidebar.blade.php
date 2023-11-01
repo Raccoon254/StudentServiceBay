@@ -23,9 +23,9 @@
             </a>
 
             <a class="side" href="" >
-                <i class="fa-regular fa-circle-play"></i>
+                <i class="fa-regular fa-user"></i>
                 <div class="">
-                    Lessons
+                    Profile
                 </div>
             </a>
 
