@@ -22,7 +22,7 @@
                 </div>
             </a>
 
-            <a class="side" href="" >
+            <a href="{{ route('profile.edit') }}" class="side {{ Route::is('profile.edit') ? 'active' : '' }}">
                 <i class="fa-regular fa-circle-user"></i>
                 <div class="">
                     Profile
