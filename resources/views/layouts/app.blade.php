@@ -27,8 +27,12 @@
         </header>
     @endif
 
+    @section('sidebar')
+        @include('layouts.sidebar')
+    @show
+
     <!-- Page Content -->
-    <main>
+    <main class="p-2 sm:p-4 w-full mt-14 overflow-clip">
         {{ $slot }}
     </main>
 </div>
