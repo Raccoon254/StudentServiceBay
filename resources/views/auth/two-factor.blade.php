@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="container mx-auto mt-10">
         <div class="w-full max-w-xs mx-auto">
-            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <h2 class="text-xl mb-4">Two Factor Authentication</h2>
 
                 @if(session('status'))

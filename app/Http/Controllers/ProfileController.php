@@ -39,23 +39,23 @@ class ProfileController extends Controller
             'two_factor_code' => ['required', 'numeric'],
         ]);
 
-        $user = $request->user();
+        $user = Auth::user();
 
-        if ($request->input('two_factor_code') !== $user->two_factor_code ||
-            now()->gt($user->two_factor_expires_at)) {
-
-            // Reset the 2FA code
-            $user->resetTwoFactorCode();
-
-            return Redirect::back()->withErrors(['two_factor' => 'The provided code is invalid.']);
+        if ($user->two_factor_code !== $request->two_factor_code) {
+            return redirect()->back()->withErrors(['two_factor' => 'The provided 2FA code is incorrect.']);
         }
 
-        // Set the user as 2FA authenticated
-        $user->setTwoFactorAuthenticated();
+        if ($user->two_factor_expires_at <= now()) {
+            $user->resetTwoFactorCode();
+            return redirect()->route('two-factor.form')->withErrors(['two_factor' => 'The 2FA code has expired. A new one has been sent to your email.']);
+        }
+
+        $user->two_factor_state = true;
+        $user->resetTwoFactorCode();
+        $user->save();
 
         return Redirect::intended();
     }
-
 
     /**
      * Update the user's profile information.
