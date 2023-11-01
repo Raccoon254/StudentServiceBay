@@ -27,6 +27,9 @@
                                 <p class="text-sm">
                                     {{ $serviceProvider->description }}
                                 </p>
+
+                                {{--
+
                                 <div class="ratings mt-4">
                                     @php
                                         $averageRating = $serviceProvider->serviceReviewRatings->avg('rating');
@@ -42,9 +45,13 @@
 
                                     <p class="text-[10px]">{{ number_format($averageRating, 1) }} based on {{ $serviceProvider->serviceReviewRatings->count() }} reviews</p>
                                 </div>
+                                                                --}}
+                                <livewire:service-provider-rating :serviceProvider="$serviceProvider" key="{{ $serviceProvider->company_name }}" />
+
                             </div>
-                            <p class="flex items-center my-2 gap-4">
-                                <span class="date flex gap-2">
+                            <p class="flex items-center justify-between my-2 gap-4">
+                                <span class="flex items-center my-2 gap-4">
+                                    <span class="date flex gap-2">
                                     <i class="fa-solid fa-envelope-circle-check"></i>
                                     <span class="text-xs">
                                         {{ $serviceProvider->email }}
@@ -63,6 +70,13 @@
                                         NOT VERIFIED
                                     @endif
                                 </span>
+                                </span>
+
+                                <a href="{{ route('service-providers.show', $serviceProvider->id) }}" class="mx-2">
+                                    <x-primary-button class="ring-0 shadow-gray-300 shadow-sm btn-sm hover:bg-orange-600 hover:text-white transition-all duration-500 ease-in-out">
+                                        View
+                                    </x-primary-button>
+                                </a>
                             </p>
                         </div>
 

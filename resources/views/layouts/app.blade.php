@@ -13,6 +13,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
+    @livewireScripts
     <script src="https://kit.fontawesome.com/af6aba113a.js" crossorigin="anonymous"></script>
 </head>
 <body class="font-sans antialiased bg-cover bg-center" style="background-image: url('/bg.svg');">
