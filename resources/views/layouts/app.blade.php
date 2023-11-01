@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,20 +16,9 @@
 </head>
 <body class="font-sans antialiased bg-cover bg-center" style="background-image: url('/bg.svg');">
 <div class="min-h-screen bg-gray-100">
-    @include('layouts.navigation')
+{{--    @include('layouts.navigation')--}}
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
-
-    @section('sidebar')
-        @include('layouts.sidebar')
-    @show
+    @include('layouts.sidebar')
 
     <!-- Page Content -->
     <main class="p-2 sm:p-4 w-full mt-14 overflow-clip">
