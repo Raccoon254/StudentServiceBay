@@ -29,7 +29,7 @@
                 </div>
             </a>
 
-            <a href="" class="side {{ Route::is('this') ? 'active' : '' }}">
+            <a href="{{route('service.providers')}}" class="side {{ Route::is('service.providers') ? 'active' : '' }}">
                 <i class="fa-solid fa-gears"></i>
                 <div class="">
                     Service Providers

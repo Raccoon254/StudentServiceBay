@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="flex">
-                <div class="flex gap-3">
+                <div class="flex w-full gap-3">
                     <div class="w-1/2">
                         <section>
                             <header>
