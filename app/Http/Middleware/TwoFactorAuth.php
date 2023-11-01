@@ -13,24 +13,18 @@ class TwoFactorAuth
     {
         $user = Auth::user();
 
-
-        //if two_factor_expires_at is later than now and two_factor_code is not 1
-        if ($user->two_factor_code == 1) {
+        if (!$user->two_factor_state) {
+            // if two_factor_state is false, we need to require 2FA
+            if (!$user->two_factor_code || !$user->two_factor_expires_at) {
+                $user->generateTwoFactorCode();
+                $this->sendTwoFactorCode($user, $user->two_factor_code);
+                return redirect()->route('two-factor.form');
+            }
+        } else {
             return $next($request);
         }
-
-        // Check if the user 2FA is code
-        if (!$user->two_factor_code || !$user->two_factor_expires_at) {
-           //generate a new code
-            $user->generateTwoFactorCode();
-            //send the code
-            $this->sendTwoFactorCode($user, $user->two_factor_code);
-            //redirect to the 2FA form
-            return redirect()->route('two-factor.form');
-        }
-
-        return $next($request);
     }
+
 
     protected function sendTwoFactorCode($user, $code): void
     {
