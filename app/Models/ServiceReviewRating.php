@@ -22,4 +22,9 @@ class ServiceReviewRating extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function serviceProvider(): BelongsTo
+    {
+        return $this->belongsTo(ServiceProvider::class, 'service_provider_id');
+    }
 }

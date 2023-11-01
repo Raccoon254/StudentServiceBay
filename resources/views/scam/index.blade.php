@@ -9,10 +9,10 @@
             @foreach($scams as $scam)
                 <div class="col-md-4 bg-gray-500 bg-opacity-20 rounded-2xl shadow-sm shadow-gray-300 backdrop-blur-sm mb-8 hover:bg-opacity-100 transition duration-500 ease-in-out">
                     <div class="flex gap-8 justify-start">
-                        <div class="img">
-                            <img src="{{ asset('storage/profile_photos/' . $scam->serviceProvider->profile_image) }}" class="card-img-top rounded-l-[12px] m-1 w-40 h-40 object-cover" alt="...">
+                        <div class="img w-1/4">
+                            <img src="{{ asset('storage/profile_photos/' . $scam->serviceProvider->profile_image) }}" class="card-img-top rounded-l-[12px] m-1 w-52 h-52 object-cover" alt="...">
                         </div>
-                        <div class="flex flex-col justify-between text-white">
+                        <div class="flex  w-3/4 flex-col justify-between text-white">
                             <div class="my-4">
                                 <h5 class="text-3xl">{{ $scam->serviceProvider->company_name }}</h5>
                                 <p class="text-sm">
@@ -42,6 +42,12 @@
                     </div>
                 </div>
             @endforeach
+
+
+            <!-- Pagination -->
+            <div class="flex justify-between w-full">
+                {{ $scams->links() }}
+            </div>
 
         </div>
     </div>

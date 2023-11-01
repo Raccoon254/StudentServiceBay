@@ -10,7 +10,7 @@ class ServiceProviderController extends Controller
 {
     public function index(): View
     {
-        $serviceProviders = ServiceProvider::all();
+        $serviceProviders = ServiceProvider::with('user', 'serviceReviewRatings')->latest()->paginate(10);
         return view('service-providers.index', compact('serviceProviders'));
     }
 }
