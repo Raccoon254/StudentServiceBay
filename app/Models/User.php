@@ -27,6 +27,7 @@ class User extends Authenticatable
         'verification_status',
         'two_factor_code',
         'two_factor_expires_at',
+        'two_factor_state',
         'role',
     ];
 
