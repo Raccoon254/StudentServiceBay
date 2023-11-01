@@ -23,44 +23,37 @@
             </a>
 
             <a class="side" href="" >
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-circle-user"></i>
                 <div class="">
                     Profile
                 </div>
             </a>
 
             <a href="" class="side {{ Route::is('this') ? 'active' : '' }}">
-                <i class="fa-solid fa-sheet-plastic"></i>
+                <i class="fa-solid fa-gears"></i>
                 <div class="">
-                    Payments
+                    Service Providers
                 </div>
             </a>
 
             <a class="side" href="" >
-                <i class="fa-regular fa-calendar"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
                 <div class="">
-                    Events
+                    Reviews
                 </div>
             </a>
 
             <a class="side" href="" >
-                <i class="fa-solid fa-circle-nodes"></i>
+                <i class="fa-solid fa-bell"></i>
                 <div class="">
-                    Connect
+                    Notifications
                 </div>
             </a>
 
             <a class="side" href="" >
-                <i class="fa-solid fa-coins"></i>
+                <i class="fa-solid text-red-600 fa-triangle-exclamation"></i>
                 <div class="">
-                    Income
-                </div>
-            </a>
-
-            <a class="side" href="" >
-                <i class="fa-regular fa-circle-user"></i>
-                <div class="">
-                    Account
+                    Scam Alerts
                 </div>
             </a>
 
