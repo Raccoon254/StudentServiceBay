@@ -50,7 +50,7 @@
                 </div>
             </a>
 
-            <a class="side" href="" >
+            <a href="{{route('scam.index')}}" class="side {{ Route::is('scam.index') ? 'active' : '' }}">
                 <i class="fa-solid text-red-600 fa-triangle-exclamation"></i>
                 <div class="">
                     Scam Alerts

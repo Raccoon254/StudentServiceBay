@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ Route::get('/two-factor', [ProfileController::class, 'twoFactorForm'])->name('tw
 Route::post('/two-factor', [ProfileController::class, 'twoFactorVerify'])->name('two-factor.verify');
 
 Route::middleware(['auth', 'verified', 'two_factor_auth'])->group(function () {
+    //scam.index
+    Route::get('/scam', [ScamController::class, 'index'])->name('scam.index');
+
     Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
