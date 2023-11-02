@@ -26,7 +26,7 @@
 
     <!-- Page Content -->
     <main class="p-2 sm:p-4 w-full mt-14 overflow-clip">
-        <div class="absolute top-0 left-0 right-0 m-3 bottom-0">
+        <div class="absolute top-0 left-0 right-0 m-3 w-[50px] h-[50px] bottom-0">
             <section data-tip="SideBar" class="tooltip tooltip-bottom m-0 p-0 shrink-0 flex items-center md:hidden">
                 <label for="my-drawer" class="drawer-button swap swap-rotate">
 
