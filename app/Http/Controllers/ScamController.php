@@ -48,6 +48,7 @@ class ScamController extends Controller
     public function show(ScamAlert $scam): View
     {
         $scam->load('user', 'serviceProvider');
+        //dd($scam->serviceProvider->company_name);
         return view('scam.show', compact('scam'));
     }
 
