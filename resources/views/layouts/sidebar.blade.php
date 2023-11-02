@@ -36,7 +36,7 @@
                 </div>
             </a>
 
-            <a class="side" href="" >
+            <a href="{{route('reviews.index')}}" class="side {{ Route::is(['reviews.index','reviews.show']) ? 'active' : '' }}">
                 <i class="fa-solid fa-star-half-stroke"></i>
                 <div class="">
                     Reviews
