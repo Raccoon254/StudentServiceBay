@@ -6,7 +6,7 @@
                 <h1 class="text-5xl text-white font-bold">Scam Reports</h1>
             </center>
             <a href="{{ route('scam.create') }}">
-                <div class="create-scam-report absolute right-5 top-4 flex text-white gap-4">
+                <div class="create-scam-report absolute right-5 top-4 flex text-white gap-4 bg-red-600 bg-opacity-100 ring ring-white hover:bg-opacity-50 p-2 rounded-full">
                     Report a Scam
                     <button class="btn btn-xs btn-circle ring">
 
@@ -48,6 +48,12 @@
                         <div class=" absolute right-2 text-xs top-2 text-gray-400">
                             Reported By: {{ $scam->user->first_name }} {{ $scam->user->last_name }}
                         </div>
+
+                        <a href="{{ route('scam.show', $scam) }}">
+                            <div class="create-scam-report absolute right-2 bottom-2 flex text-white gap-4 bg-blue-600 bg-opacity-0 ring-white ring-1 hover:bg-opacity-50 p-2 rounded-[8px]">
+                                View Details
+                            </div>
+                        </a>
 
                     </div>
                 </div>
