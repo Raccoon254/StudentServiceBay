@@ -1,21 +1,20 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Student Service Bay
 
-## About Laravel Template
 
-Laravel template is an extension of the Laravel framework. It is a template that is used to create a new Laravel project
-with the following features:
+## Pre-requisites
 
-- Authentication
-- Tailwind CSS
-- DaisyUI
-- Laravel Livewire
+- PHP
+- Composer
+- Node.js
+- NPM
+- MariaDB [MySQL]
 
 ## Installation
 
-clone the repository
+Change directory to the project folder
 
 ```bash
-git clone https://github.com/Raccoon254/laraveltemplate.git [your project name]
+cd [project folder]
 ```
 
 Install composer dependencies
@@ -55,6 +54,8 @@ Serve the application
 npm run start
 ```
 
+Navigate to [http://localhost:8000](http://localhost:8000) in your browser
+
 ## Database
 
 MariaDB is used as the database for this project. Create a database and update the .env file with the database name,
@@ -69,6 +70,17 @@ DB_USERNAME=
 DB_PASSWORD=
 ```
 
-## License
+## Dummy Data
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+You can run the following command to seed the database with dummy data.
+
+```bash
+php artisan db:seed
+```
+
+## Testing
+We use PHPUnit for testing. You can run the following command to run the tests.
+
+```bash
+php artisan test
+```
