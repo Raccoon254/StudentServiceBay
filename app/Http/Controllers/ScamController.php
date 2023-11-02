@@ -14,4 +14,9 @@ class ScamController extends Controller
         return view('scam.index', compact('scams'));
     }
 
+    public function create() : View
+    {
+        return view('scam.create');
+    }
+
 }

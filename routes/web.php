@@ -24,6 +24,9 @@ Route::middleware(['auth', 'verified', 'two_factor_auth'])->group(function () {
 
     Route::get('/scam', [ScamController::class, 'index'])->name('scam.index');
     Route::get('/service-providers/{serviceProvider}', [ServiceProviderController::class, 'show'])->name('service-providers.show');
+    Route::get('/scam/create', [ScamController::class, 'create'])->name('scam.create');
+    Route::post('/scam', [ScamController::class, 'store'])->name('scam.store');
+    Route::get('/scam/{scam}', [ScamController::class, 'show'])->name('scam.show');
     Route::get('/service/providers', [ServiceProviderController::class, 'index'])->name('service.providers');
 
     Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');

@@ -1,10 +1,20 @@
 <x-app-layout>
-    <div class="container py-5">
+    <div class="container py-2">
         <div class="row">
 
             <center class="mb-5">
-                <h1 class="text-4xl text-white font-bold">Scam Reports</h1>
+                <h1 class="text-5xl text-white font-bold">Scam Reports</h1>
             </center>
+            <a href="{{ route('scam.create') }}">
+                <div class="create-scam-report absolute right-5 top-4 flex text-white gap-4">
+                    Report a Scam
+                    <button class="btn btn-xs btn-circle ring">
+
+                            <i class="fa-solid fa-lg fa-plus"></i>
+                    </button>
+                </div>
+            </a>
+
 
             @foreach($scams as $scam)
                 <div class="col-md-4 bg-gray-500 bg-opacity-20 rounded-2xl shadow-sm shadow-gray-300 backdrop-blur-sm mb-8 hover:bg-opacity-100 transition duration-500 ease-in-out">
