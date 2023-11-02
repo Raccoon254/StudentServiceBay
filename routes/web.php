@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ScamController;
 use App\Http\Controllers\ServiceProviderController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::middleware(['auth', 'verified', 'two_factor_auth'])->group(function () {
 
     Route::get('/dashboard', [ProfileController::class, 'dash'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
