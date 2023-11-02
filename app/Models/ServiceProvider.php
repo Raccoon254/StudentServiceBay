@@ -37,4 +37,12 @@ class ServiceProvider extends Model
     {
         return $this->hasMany(ServiceReviewRating::class, 'service_provider_id');
     }
+
+    // ServiceProvider model
+
+    public function averageRating()
+    {
+        return $this->serviceReviewRatings()->avg('rating');
+    }
+
 }

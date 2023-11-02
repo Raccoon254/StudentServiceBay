@@ -7,8 +7,6 @@
                 <h1 class="text-5xl text-white font-bold">Reviews</h1>
             </center>
 
-            @foreach($reviews as $review)
-                {{$review->id}}
-            @endforeach
+            @livewire('user-reviews')
 
 </x-app-layout>
