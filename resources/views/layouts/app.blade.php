@@ -39,6 +39,9 @@
             </section>
         </div>
 
+        <!-- Session Alerts -->
+        @include('session.alerts')
+
         {{ $slot }}
     </main>
 </div>

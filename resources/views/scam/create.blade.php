@@ -2,6 +2,17 @@
     <div class="container text-white mx-auto p-6">
         <div class="max-w-2xl mx-auto">
             <h1 class="text-3xl text-center font-semibold mb-4">Report a Scam</h1>
+
+            <a href="{{ route('scam.create') }}">
+                <div class="create-scam-report absolute right-5 top-4 flex text-white gap-4 bg-red-600 bg-opacity-100 ring ring-white hover:bg-opacity-50 p-2 rounded-full">
+                    Report a Scam
+                    <button class="btn btn-xs btn-circle ring">
+
+                        <i class="fa-solid fa-lg fa-plus"></i>
+                    </button>
+                </div>
+            </a>
+
             <form action="{{ route('scam.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
