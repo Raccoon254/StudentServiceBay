@@ -26,7 +26,7 @@ class ServiceProviderFactory extends Factory
             'address' => $this->faker->address,
             'service_type' => $this->faker->word,
             'verification_status' => $this->faker->randomElement(['verified', 'unverified']),
-            'profile_image' => "1698839051.jpg",
+            'profile_image' => $this->faker->randomElement(['a.jpg', 'b.jpg', 'c.jpg', 'd.jpg']),
         ];
     }
 }
