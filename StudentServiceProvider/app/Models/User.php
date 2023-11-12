@@ -52,6 +52,12 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function isTwoFactorCodeExpired(): bool
+    {
+        return $this->two_factor_expires_at <= now();
+    }
+
+
     public function generateTwoFactorCode(): ?int
     {
         $this->timestamps = false;

@@ -13,22 +13,27 @@ class TwoFactorAuth
     {
         $user = Auth::user();
 
+        // Skip 2FA for testing environment
         if (app()->environment('testing')) {
             return $next($request);
         }
 
+        // If two_factor_state is false, we need to require 2FA
         if (!$user->two_factor_state) {
-            // if two_factor_state is false, we need to require 2FA
-            if (!$user->two_factor_code || !$user->two_factor_expires_at) {
+            // Check if the 2FA code is set and not expired
+            if (!$user->two_factor_code || $user->isTwoFactorCodeExpired()) {
+                // Generate a new 2FA code and send it to the user
                 $user->generateTwoFactorCode();
                 $this->sendTwoFactorCode($user, $user->two_factor_code);
+
+                // Redirect to the 2FA verification form
                 return redirect()->route('two-factor.form');
             }
-        } else {
-            return $next($request);
         }
-    }
 
+        // If the user has 2FA enabled and the code is valid, proceed with the request
+        return $next($request);
+    }
 
     protected function sendTwoFactorCode($user, $code): void
     {
