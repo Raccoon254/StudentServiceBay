@@ -2,7 +2,7 @@
     <div class="h-5/6 text-white w-full flex flex-col items-center justify-center">
 
         <div class="text-5xl font-semibold">
-            <h1 class="text-center"> THE STUDENT BAY</h1>
+            <h1 class="text-center"> THE STUDENT SERVICE BAY</h1>
         </div>
 
         <div class="flex gap-4">

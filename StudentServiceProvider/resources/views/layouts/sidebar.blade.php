@@ -57,6 +57,18 @@
                 </div>
             </a>
 
+            <!-- Logout -->
+            <form method="POST" class="side" action="{{ route('logout') }}">
+                @csrf
+                <i class="fa-solid fa-sign-out"></i>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <div class="">
+                        {{ __('Log Out') }}
+                    </div>
+                </a>
+            </form>
+
+
         </div>
     </div>
 </div>

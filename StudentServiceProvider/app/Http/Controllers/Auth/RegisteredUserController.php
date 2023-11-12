@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
             'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'role' => ['required', 'in:student,service-provider'],
         ]);
+        //dd($request->all());
 
         $phone_number_validated = $this->validateNumber($request->phone_number);
         if (!$phone_number_validated) {
@@ -71,17 +72,17 @@ class RegisteredUserController extends Controller
             return false;
         }
 
-        //if the number does not start with 0
-        if (substr($phone_number, 0, 1) != 0) {
-            return false;
-        }
-
-        /**
-         *Remove the 0 at the beginning and replace it with country code
-         *This is done to facilitate standardization of phone numbers
-         */
-        $country_code = env('COUNTRY_CODE', '0');
-        return $country_code . substr($phone_number, 1);
+//        //if the number does not start with 0
+//        if (substr($phone_number, 0, 1) != 0) {
+//            return false;
+//        }
+//
+//        /**
+//         *Remove the 0 at the beginning and replace it with country code
+//         *This is done to facilitate standardization of phone numbers
+//         */
+//        $country_code = env('COUNTRY_CODE', '0');
+        return $phone_number;
     }
 
     /**
