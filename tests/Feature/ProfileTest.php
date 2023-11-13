@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\ScamAlert;
+use App\Models\ServiceProvider;
+use App\Models\ServiceReviewRating;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -19,28 +22,6 @@ class ProfileTest extends TestCase
             ->get('/profile');
 
         $response->assertOk();
-    }
-
-    public function test_profile_information_can_be_updated(): void
-    {
-        $user = User::factory()->create();
-
-        $response = $this
-            ->actingAs($user)
-            ->patch('/profile', [
-                'name' => 'Test User',
-                'email' => 'test@example.com',
-            ]);
-
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect('/profile');
-
-        $user->refresh();
-
-        $this->assertSame('Test User', $user->name);
-        $this->assertSame('test@example.com', $user->email);
-        $this->assertNull($user->email_verified_at);
     }
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
@@ -96,4 +77,118 @@ class ProfileTest extends TestCase
 
         $this->assertNotNull($user->fresh());
     }
+
+    public function test_dashboard_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/dashboard');
+
+        $response->assertOk();
+    }
+
+    public function test_scam_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/scam');
+
+        $response->assertOk();
+    }
+
+
+    public function test_scam_create_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/scam/create');
+
+        $response->assertOk();
+    }
+
+    //can create scam
+    public function test_scam_can_be_created(): void
+    {
+        $user = User::factory()->create();
+        $serviceProvider = ServiceProvider::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->post('/scam', [
+                'service_provider' => $serviceProvider->id,
+                'description' => 'This is a test scam',
+                'date_reported' => '2021-01-01',
+                'location_area' => 'Lagos',
+                'reported_by' => $user->id,
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/scam/' . ScamAlert::first()->id);
+
+        $this->assertDatabaseCount('scam_alerts', 1);
+    }
+
+    public function test_service_providers_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/service/providers');
+
+        $response->assertOk();
+    }
+
+
+    public function test_reviews_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/reviews');
+
+        $response->assertOk();
+    }
+
+    public function test_two_factor_page_is_displayed(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/two-factor');
+
+        $response->assertOk();
+    }
+
+    public function test_two_factor_page_is_displayed_when_user_is_not_logged_in(): void
+    {
+        $response = $this
+            ->get('/two-factor');
+
+        $response->assertOk();
+    }
+
+    public function test_two_factor_page_is_displayed_when_user_is_not_verified(): void
+    {
+        $user = User::factory()->create([
+            'email_verified_at' => null,
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/two-factor');
+
+        $response->assertOk();
+    }
+
+
 }

@@ -20,11 +20,18 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register(): void
     {
         $response = $this->post('/register', [
-            'name' => 'Test User',
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'phone_number' => '0113042155',
+            'role' => 'student',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
+
+        if (!$response->isRedirect()) {
+            $response->dump();
+        }
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
