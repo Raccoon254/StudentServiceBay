@@ -10,10 +10,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
-
+    @livewireStyles
+    @livewireScripts
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <livewire:styles />
     <script src="https://kit.fontawesome.com/af6aba113a.js" crossorigin="anonymous"></script>
 </head>
 <body class="font-sans antialiased bg-cover bg-center" style="background-image: url('/bg.svg');">
@@ -44,6 +44,5 @@
         {{ $slot }}
     </main>
 </div>
-<livewire:scripts />
 </body>
 </html>

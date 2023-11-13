@@ -1,15 +1,30 @@
 <div>
-    <div class="ratings mt-4">
-        @for($i = 1; $i <= 5; $i++)
-            <span wire:click="setRating({{ $i }})">
-                @if($i <= $rating)
-                    <i class="fas fa-star text-warning cursor-pointer"></i>
-                @else
-                    <i class="far fa-star text-warning cursor-pointer"></i>
-                @endif
-            </span>
-        @endfor
-        <p class="text-[10px]">{{ number_format($rating, 1) }} based on {{ $serviceProvider->serviceReviewRatings->count() }} reviews</p>
+    <div class="rating flex flex-col mt-4">
+
+        <div class="text-[10px] mb-2" wire:click="$set('showModal', true)">
+            Click on the stars to rate
+        </div>
+        <div class="flex gap-5 justify-start">
+            @for($i = 1; $i <= 5; $i++)
+
+                <button class="btn btn-xs btn-circle btn-outline-primary relative" wire:click="setRating({{ $i }})" data-tip="Click to rate {{ $i }} stars">
+                <span class="grid place-items-center h-full text-white w-full absolute top-2 left-0 z-10 tooltip tooltip-primary" data-tip="Click to rate {{ $i }} stars">
+                    {{ $i }}
+                </span>
+                    <span class="star tooltip tooltip-primary" data-tip="Click to rate {{ $i }} stars">
+                    @if($i <= $rating)
+                            <i class="fas fa-star fa-3x text-warning cursor-pointer"></i>
+                        @else
+                            <i class="far fa-star fa-3x text-warning cursor-pointer"></i>
+                        @endif
+                </span>
+                </button>
+
+            @endfor
+
+        </div>
+
+        <p class="text-[10px] mt-4">{{ number_format($rating, 1) }} based on {{ $serviceProvider->serviceReviewRatings->count() }} reviews</p>
     </div>
 
     <!-- Rating Modal -->
@@ -39,4 +54,5 @@
             </div>
         </div>
     </div>
+
 </div>

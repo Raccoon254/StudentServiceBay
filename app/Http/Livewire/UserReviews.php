@@ -9,10 +9,10 @@ use Livewire\Component;
 class UserReviews extends Component
 {
     public $reviews;
-    public $showEditModal = false;
-    public $currentReviewId;
-    public $currentReviewComments;
-    public $currentReviewRating;
+    public bool $showEditModal = false;
+    public string $currentReviewId;
+    public string $currentReviewComments;
+    public string $currentReviewRating;
 
     public function mount(): void
     {

@@ -7,6 +7,8 @@
                 <h1 class="text-5xl text-white font-bold">Reviews</h1>
             </center>
 
-            <LiveWire:user-reviews />
+            @livewire('user-reviews')
+        </div>
+    </div>
 
 </x-app-layout>
