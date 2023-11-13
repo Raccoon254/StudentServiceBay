@@ -1,4 +1,4 @@
-# Student Service Bay
+# Student Service Bay [![Laravel](https://github.com/Raccoon254/StudentServiceBay/actions/workflows/laravel.yml/badge.svg)](https://github.com/Raccoon254/StudentServiceBay/actions/workflows/laravel.yml)
 
 
 ## Pre-requisites
